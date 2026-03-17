@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🕵️‍♂️ IMailBeenPwned
-**The Advanced OSINT Email Investigation Suite**
+**OSINT Email Investigation Suite**
 
 [![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.3-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
