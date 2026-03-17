@@ -1,0 +1,33 @@
+# Documentación de Entorno (.env.example)
+
+# Puerto en el que se ejecuta el servidor Spring Boot
+server.port=8080
+
+# ==========================================
+# CONFIGURACIÓN DE APIS PÚBLICAS Y ENDPOINTS
+# ==========================================
+
+# GitHub API (Pública por defecto)
+github.api.url=https://api.github.com
+
+# LeakCheck API (Pública)
+# Web: https://leakcheck.net/api
+leakcheck.api.url=https://leakcheck.net/api/public
+# leakcheck.api.key=YOUR_LEAKCHECK_PRO_API_KEY_HERE
+
+# EmailRep.io (Pública - límite 100 req/día)
+# Web: https://emailrep.io
+emailrep.api.url=https://emailrep.io
+# emailrep.api.key=YOUR_EMAILREP_API_KEY_HERE
+
+# Gravatar
+gravatar.base.url=https://www.gravatar.com/avatar
+
+# Pastebin (PSBDMP)
+pastebin.search.url=https://psbdmp.ws/api/v2/search
+
+# ==========================================
+# (OPCIONAL) Otras configuraciones de Spring
+# ==========================================
+# spring.main.banner-mode=off
+# logging.level.com.osint.email=DEBUG
