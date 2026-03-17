@@ -52,4 +52,7 @@ public class EmailInvestigationResult {
     private boolean isDisposable;
     private LocalDateTime analysisTimestamp;
     private List<String> warnings;
+    
+    // ── AI Insight ──────────────────────────────────────────────────────────
+    private String aiAssessment;
 }

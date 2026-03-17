@@ -29,6 +29,8 @@ public class AggregatorService {
     private PlatformService platform;
     @Autowired
     private BreachDirectoryService breachDirectory;
+    @Autowired
+    private AiAnalysisService aiAnalysisService;
 
     public EmailInvestigationResult investigate(String email) {
         log.info("Starting investigation for: {}", email);
@@ -136,6 +138,20 @@ public class AggregatorService {
                 .build();
 
         calculateRisk(result);
+        
+        // ── AI Analysis (runs after everything else, based on findings) ───────
+        try {
+            boolean inPastebin = result.isAppearsInPastebin();
+            boolean isDisposable = result.isDisposable();
+            int score = result.getRiskScore();
+            
+            String aiReport = aiAnalysisService.analyze(email, score, totalLeaks, isDisposable, inPastebin);
+            result.setAiAssessment(aiReport);
+        } catch (Exception e) {
+            log.error("AI Analysis failed out of band: {}", e.getMessage());
+            result.setAiAssessment("Error AI");
+        }
+        
         return result;
     }
 

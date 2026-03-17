@@ -26,6 +26,7 @@ Security researchers, penetration testers, and privacy advocates can use this to
 *   **💻 Developer Footprint:** Scrapes public `GitHub` exposure (commits, profiles).
 *   **🌐 Domain Intelligence:** Performs fast DNS checks (MX, SPF, DMARC) and WHOIS lookups to assess email spoofablility and domain ownership.
 *   **👾 Social Reconnaissance:** Validates the existence of accounts on platforms like X/Twitter, Instagram, TikTok, LinkedIn, and Gravatar using intelligent scraping and API checks.
+*   **✨ AI Threat Assessment:** Leverages **Groq (Llama 3)** to synthesize the raw OSINT data into a concise, actionable security verdict for the user.
 
 ---
 
@@ -33,8 +34,8 @@ Security researchers, penetration testers, and privacy advocates can use this to
 
 The project is built using a modern, decoupled architecture:
 
-*   **Backend (`/email-osint-backend`):** A robust Java Spring Boot API using Spring WebFlux for highly concurrent, non-blocking requests to external OSINT providers.
-*   **Frontend (`/imailbeenpwned-frontend`):** A rapid, responsive Single Page Application (SPA) built with React 19 and Vite. 
+*   **Backend (`/email-osint-backend`):** A robust Java Spring Boot API using Spring WebFlux for highly concurrent, non-blocking requests to external OSINT providers, and integrating LLMs via Groq for contextual analysis.
+*   **Frontend (`/imailbeenpwned-frontend`):** A rapid, responsive Single Page Application (SPA) built with React 19 and Vite, following a modular component-based architecture (UI atoms, constants, and API clients separated for scalability). 
 
 ```text
 ├── email-osint-backend/       # Spring Boot 3.x REST API
@@ -44,7 +45,10 @@ The project is built using a modern, decoupled architecture:
 │   └── README.md              # Detailed Backend Documentation
 │
 ├── imailbeenpwned-frontend/   # React 19 + Vite Frontend
-│   ├── src/                   # React components and views
+│   ├── src/                   # React source code
+│   │   ├── api/               # External API client logic 
+│   │   ├── components/        # Modular UI components (Cards, Modals, etc.)
+│   │   └── utils/             # Constants and helper functions
 │   ├── package.json           # NPM dependencies
 │   ├── vite.config.js         # Vite bundler configuration
 │   └── eslint.config.js       # Linter configuration

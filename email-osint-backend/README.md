@@ -15,6 +15,7 @@ The **IMailBeenPwned Backend** is a Spring Boot application designed to automati
 *   **Developer Footprint:** GitHub (publicly exposed emails on commits/profiles).
 *   **Social & Platforms:** Gravatar (avatar existence) and a wide array of Social Media Platforms (X/Twitter, Instagram, TikTok, LinkedIn...).
 *   **Domain Intelligence:** WHOIS data, SPF, DMARC, and MX records to determine spoofability.
+*   **AI Threat Assessment:** Integration with Groq (Llama 3 / Mixtral) to provide an automated, natural-language summary of the security risk.
 
 ---
 
@@ -22,6 +23,7 @@ The **IMailBeenPwned Backend** is a Spring Boot application designed to automati
 
 *   **Reactive & Non-Blocking HTTP Clients:** Built with Spring WebFlux (`WebClient`) for blazing-fast concurrent API requests.
 *   **Aggregator Service:** A unified endpoint that concurrently schedules and retrieves data from all integrated OSINT modules, yielding a single cohesive JSON report.
+*   **AI-Powered Insights:** Automatically summarizes raw findings into a human-readable security verdict using fast LLMs via Groq API.
 *   **Risk Scoring:** Advanced heuristic algorithm that calculate a security "Risk Score" based on the severity of the findings (e.g., exposed passwords vs. just a Gravatar account).
 *   **Global Exception Handling:** Clean and standardized error responses using Spring `@ControllerAdvice`.
 
@@ -52,6 +54,7 @@ The project uses a standard `application.properties` configuration file. While m
 | `server.port` | The port the backend will run on (Default: `8080`) |
 | `leakcheck.api.key` | (Optional) Private API Key for LeakCheck.net |
 | `emailrep.api.key` | (Optional) Private API Key for EmailRep.io (higher limits) |
+| `groq.api.key` | (Optional) API Key for Groq to enable the AI Insight feature |
 
 > ⚠️ **Security Warning:** Never commit your `application.properties` with real API keys to a public repository. The `.gitignore` is set up to ignore `.env` files and IDE local configs.
 
@@ -138,6 +141,7 @@ src/main/java/com/osint/email/
 ├── model/          # DTOs and Response Objects (EmailInvestigationResult, etc.)
 ├── service/        # OSINT Integrations
 │   ├── AggregatorService.java      # Master orchestrator
+│   ├── AiAnalysisService.java      # Groq LLM integration
 │   ├── BreachDirectoryService.java # Data breach lookups
 │   ├── DomainService.java          # DNS, MX, SPF, DMARC, WHOIS
 │   ├── EmailRepService.java        # Email reputation intelligence
